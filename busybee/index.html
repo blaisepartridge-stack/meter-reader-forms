@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ff5fa2">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="BusyBee">
 <title>BusyBee</title>
 <style>
 :root{--bg1:#fff5fb;--bg2:#effcff;--ink:#2a0f3d;--card:rgba(255,255,255,.85);--line:rgba(42,15,61,.14);--muted:#6e5b86;--shadow:0 12px 30px rgba(168,85,247,.22);--accent:linear-gradient(135deg,#ff5fa2,#ff9f43 50%,#ffe066)}
@@ -12,7 +15,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);min-height:100vh;padding:18px 16px 40px;background:radial-gradient(circle at 8% 0%,#ffd1ec 0,transparent 42%),radial-gradient(circle at 95% 8%,#bff7ff 0,transparent 40%),linear-gradient(165deg,var(--bg1),var(--bg2)) fixed;overflow-x:hidden}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);min-height:100vh;padding:18px 16px 140px;background:radial-gradient(circle at 8% 0%,#ffd1ec 0,transparent 42%),radial-gradient(circle at 95% 8%,#bff7ff 0,transparent 40%),linear-gradient(165deg,var(--bg1),var(--bg2)) fixed;overflow-x:hidden}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
 h1{margin:0;font-size:34px;font-weight:900;background:linear-gradient(90deg,#ff3ea5,#ff9f1c,#22d3ee,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent}
 .tag{color:var(--muted);margin:2px 0 0;font-weight:600}
@@ -27,7 +30,7 @@ h1{margin:0;font-size:34px;font-weight:900;background:linear-gradient(90deg,#ff3
 .c1{background:linear-gradient(135deg,#b6ff3b,#5affc4 60%,#c3ffe8)}
 .c2{background:linear-gradient(135deg,#ffa43b,#ffe27a 55%,#ff7ad9)}
 .c3{background:linear-gradient(135deg,#7cc8ff,#c4a6ff 55%,#ff9de2)}
-.hive.add{flex-basis:130px;background:transparent;border:2px dashed var(--line);color:var(--ink);justify-content:center;align-items:center;font-weight:800;box-shadow:none}
+.hive.add{flex:0 0 130px;background:transparent;border:2px dashed var(--line);color:var(--ink);justify-content:center;align-items:center;font-weight:800;box-shadow:none;text-align:center}
 .hive.add::before{display:none}
 @keyframes twinkle{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
 .panel{background:var(--card);border-radius:26px;padding:18px;box-shadow:var(--shadow);border:1px solid var(--line);backdrop-filter:blur(8px)}
@@ -43,19 +46,28 @@ h1{margin:0;font-size:34px;font-weight:900;background:linear-gradient(90deg,#ff3
 .mic:disabled{opacity:.4;animation:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,62,165,.55)}70%{box-shadow:0 0 0 18px rgba(255,62,165,0)}100%{box-shadow:0 0 0 0 rgba(255,62,165,0)}}
 .rem{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;border-radius:18px;margin-bottom:10px;background:linear-gradient(120deg,rgba(255,95,162,.16),rgba(34,211,238,.14));border:1px solid var(--line)}
-.rem-text{font-weight:800;font-size:17px}
+.rem.is-done{opacity:.55}
+.rem.is-done .rem-text{text-decoration:line-through}
+.rem-text{font-weight:800;font-size:17px;word-break:break-word}
 .rem-meta{font-size:13px;color:var(--muted);margin-top:3px}
-.rem-btns{display:flex;gap:6px}
+.rem-btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .rem-btns button{background:var(--card);border-radius:12px;padding:8px 10px;cursor:pointer;font-size:16px;color:var(--ink);border:1px solid var(--line)}
+.cat-sel{font:inherit;font-size:13px;padding:7px 8px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
 .empty{color:var(--muted);font-weight:600;text-align:center;padding:20px}
+.next{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:20px;background:linear-gradient(120deg,rgba(255,201,60,.28),rgba(255,79,163,.2));border:1px solid var(--line);margin-bottom:14px}
+.next-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.next-t{font-weight:900;font-size:18px;word-break:break-word}
+.ring-bg{fill:none;stroke:rgba(127,90,170,.25);stroke-width:7}
+.ring-fg{fill:none;stroke:#ff3ea5;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1s linear}
 dialog{border:0;border-radius:26px;padding:0;width:min(440px,94vw);max-height:92vh;overflow:auto;background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.4)}
 dialog::backdrop{background:rgba(20,5,40,.55)}
 .dform{padding:20px;display:grid;gap:14px}
 .dform h2{margin:0;font-size:22px}
 .f{display:grid;gap:6px;font-weight:700;font-size:14px}
-input[type=text],input[type=time],input[type=date],select{font:inherit;padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);width:100%}
+input[type=text],input[type=time],input[type=date],input[type=search],select,textarea{font:inherit;padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);width:100%}
+textarea{resize:vertical;min-height:84px}
 input[type=range]{width:100%;accent-color:#ff3ea5}
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-top:6px}
 .opt{position:relative;display:block}
 .opt input,.chip input{position:absolute;opacity:0;pointer-events:none}
 .opt span{display:block;text-align:center;padding:12px 6px;border-radius:14px;border:2px solid var(--line);background:var(--card);font-weight:800;cursor:pointer;font-size:14px}
@@ -64,17 +76,24 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .chip span{display:inline-block;padding:8px 11px;border-radius:99px;border:2px solid var(--line);font-weight:700;font-size:13px;cursor:pointer;background:var(--card)}
 .chip:has(input:checked) span{background:linear-gradient(135deg,#22d3ee,#a855f7);color:#fff;border-color:transparent}
+.chip-btn{font:800 13px var(--body,system-ui);padding:8px 12px;border-radius:99px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chip-btn.on{background:linear-gradient(135deg,#22d3ee,#a855f7);color:#fff;border-color:transparent}
 .hint{font-size:12px;color:var(--muted);margin:-4px 0 0}
 .actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:4px}
-.popup{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);width:min(420px,92vw);background:linear-gradient(135deg,#ff5fa2,#ffb347 50%,#ffe066);color:#2a0f3d;border-radius:22px;padding:16px 18px;box-shadow:0 18px 50px rgba(255,62,165,.5);z-index:10;animation:popIn .4s cubic-bezier(.2,1.6,.4,1)}
-.popup h3{margin:0 0 4px;font-size:20px}
+.brain-bar{position:fixed;left:0;right:0;bottom:0;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(rgba(20,8,42,0),var(--bg2) 45%);z-index:5}
+.brain-big{width:100%;border:0;border-radius:22px;padding:18px;font:900 20px system-ui,sans-serif;color:#fff;background:linear-gradient(135deg,#22d3ee,#9B6BFF 55%,#FF4FA3);box-shadow:0 10px 30px rgba(155,107,255,.45);cursor:pointer;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+.popup{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);width:min(420px,92vw);background:linear-gradient(135deg,#ff5fa2,#ffb347 50%,#ffe066);color:#2a0f3d;border-radius:22px;padding:16px 18px;box-shadow:0 18px 50px rgba(255,62,165,.5);z-index:10;animation:popIn .4s cubic-bezier(.2,1.6,.4,1)}
+.popup h3{margin:0 0 4px;font-size:20px;word-break:break-word}
 .popup p{margin:0 0 10px;font-weight:700}
 .pop-actions{display:flex;flex-wrap:wrap;gap:6px}
 .pop-actions .btn{background:#2a0f3d;color:#fff;box-shadow:none;padding:9px 12px}
 @keyframes popIn{from{transform:translate(-50%,40px) scale(.9);opacity:0}}
 .sparkle{position:fixed;pointer-events:none;font-size:18px;opacity:.7;animation:float 6s ease-in-out infinite;z-index:0}
 @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(12deg)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+.confetti{position:fixed;left:50%;top:45%;font-size:22px;pointer-events:none;z-index:11;animation:boom 1.1s ease-out forwards}
+@keyframes boom{from{transform:translate(-50%,-50%) scale(.4);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.2);opacity:0}}
+#fw{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:9}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -102,6 +121,17 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
       <button class="btn ghost small" id="hive-set">⚙️ Hive settings</button>
     </div>
   </div>
+  <div id="next" class="next" hidden>
+    <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" style="flex:0 0 auto">
+      <circle cx="32" cy="32" r="28" class="ring-bg"></circle>
+      <circle id="ring-fg" cx="32" cy="32" r="28" class="ring-fg" transform="rotate(-90 32 32)"></circle>
+    </svg>
+    <div style="min-width:0">
+      <div class="next-label">Next up</div>
+      <div class="next-t" id="next-t"></div>
+      <div class="rem-meta" id="next-m"></div>
+    </div>
+  </div>
   <div id="list"></div>
 </section>
 
@@ -115,6 +145,10 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
         <input type="text" id="f-text" placeholder="e.g. Take tablet" required maxlength="80" style="flex:1">
         <button type="button" class="mic" id="mic-f" style="width:48px;height:48px;font-size:20px" aria-label="Speak">🎤</button>
       </div>
+    </label>
+
+    <label class="f">Hive
+      <select id="f-hive"></select>
     </label>
 
     <div class="row">
@@ -144,6 +178,7 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
         <label class="opt"><input type="radio" name="alert" value="alarm" checked><span>🔔 Alarm</span></label>
         <label class="opt"><input type="radio" name="alert" value="silent"><span>🔕 Silent</span></label>
         <label class="opt"><input type="radio" name="alert" value="vibrate"><span>📳 Vibrate</span></label>
+        <label class="opt"><input type="radio" name="alert" value="fireworks"><span>✨ Fireworks</span></label>
       </div>
     </div>
 
@@ -159,7 +194,7 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
       <input type="range" id="f-vol" min="0" max="100" step="5" value="70">
     </label>
 
-    <p class="hint">Alarm rings until you tap Dismiss (stops by itself after 2 minutes). Vibrate buzzes and plays your sound once. Silent only shows a pop-up.</p>
+    <p class="hint">Alarm rings until you tap a button (stops by itself after 2 minutes). Vibrate buzzes and plays your sound once. Silent only shows a pop-up. Fireworks shows colours on screen with no sound.</p>
 
     <div class="actions">
       <button type="button" class="btn ghost small" id="f-buzz">📳 Test buzz</button>
@@ -188,6 +223,7 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
         <label class="opt"><input type="radio" name="halert" value="alarm"><span>🔔 Alarm</span></label>
         <label class="opt"><input type="radio" name="halert" value="silent"><span>🔕 Silent</span></label>
         <label class="opt"><input type="radio" name="halert" value="vibrate"><span>📳 Vibrate</span></label>
+        <label class="opt"><input type="radio" name="halert" value="fireworks"><span>✨ Fireworks</span></label>
       </div>
     </div>
 
@@ -215,7 +251,35 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
   </form>
 </dialog>
 
+<!-- Brain Dump scrapbook -->
+<dialog id="bdlg">
+  <div class="dform">
+    <div class="phead">
+      <h2>🧠 Brain Dump</h2>
+      <button type="button" class="btn ghost small" id="bd-close">Close</button>
+    </div>
+    <p class="hint">Your scrapbook. Talk or type anything, even half-finished. Sort it later.</p>
+
+    <textarea id="bd-text" rows="3" placeholder="e.g. ring the vet, buy milk, Jack's permission slip Thursday"></textarea>
+    <div class="row" style="justify-content:space-between">
+      <button type="button" class="mic" id="bd-mic" aria-label="Talk">🎤</button>
+      <label class="hint" style="display:flex;gap:6px;align-items:center;margin:0"><input type="checkbox" id="bd-split" checked> Split into separate items</label>
+      <button type="button" class="btn" id="bd-save">💾 Save</button>
+    </div>
+    <p class="hint" id="bd-status"></p>
+
+    <input type="search" id="bd-q" placeholder="🔍 Search keywords, e.g. milk, camping, Jack">
+    <div class="chips" id="bd-cats"></div>
+    <div id="bd-items"></div>
+  </div>
+</dialog>
+
+<div class="brain-bar">
+  <button type="button" id="bd-open" class="brain-big">🧠 Brain Dump · Talk to me</button>
+</div>
+
 <input type="file" id="sfile" accept="audio/*" style="display:none">
+<canvas id="fw" hidden></canvas>
 
 <div id="popup" class="popup" hidden>
   <h3 id="pop-title"></h3>
@@ -227,11 +291,15 @@ input[type=range]{width:100%;accent-color:#ff3ea5}
 const $ = s => document.querySelector(s);
 const pad = n => String(n).padStart(2, '0');
 const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const todayStr = () => ymd(new Date());
 const uid = () => Math.random().toString(36).slice(2, 9);
 const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const DAY_ORDER = [1,2,3,4,5,6,0];
 const BUILTIN = {chime:'Chime', bells:'Bells', beep:'Beep', pulse:'Pulse'};
-const ALERT_NAMES = {alarm:'🔔 Alarm', silent:'🔕 Silent', vibrate:'📳 Vibrate'};
+const ALERT_NAMES = {alarm:'🔔 Alarm', silent:'🔕 Silent', vibrate:'📳 Vibrate', fireworks:'✨ Fireworks'};
+const CATS = ['Idea','Shopping','Bill','Call','Reminder'];
+const CAT_ICON = {Idea:'💡', Shopping:'🛒', Bill:'💳', Call:'📞', Reminder:'⏰'};
+const STARTERS = ['School pick-up','Animal tablets','Canteen roster','Bins','Rent'];
 
 /* ---------- Saved data ---------- */
 let state = null;
@@ -243,13 +311,12 @@ if(!state || !Array.isArray(state.hives) || !state.hives.length) state = {
     {id:'h3', name:'Bills', c:2},
     {id:'h4', name:'Health', c:3}
   ],
-  reminders: [],
-  customSounds: [],
-  active: 'h1'
+  reminders: [], customSounds: [], snoozes: [], brain: [], active: 'h1'
 };
 state.reminders = state.reminders || [];
 state.customSounds = state.customSounds || [];
 state.snoozes = state.snoozes || [];
+state.brain = state.brain || [];
 state.hives.forEach((h, i) => {
   if(h.c === undefined) h.c = i % 4;
   h.alert = h.alert || 'alarm';
@@ -258,6 +325,7 @@ state.hives.forEach((h, i) => {
 });
 const save = () => { try { localStorage.setItem('busybee', JSON.stringify(state)); } catch(e) {} };
 const curHive = () => state.hives.find(h => h.id === state.active) || state.hives[0];
+const isDone = r => r.doneOn === todayStr();
 
 function soundLabel(v){
   if(BUILTIN[v]) return BUILTIN[v];
@@ -270,6 +338,11 @@ function populateSound(sel, value){
   Object.entries(BUILTIN).forEach(([k, t]) => add(k, t));
   state.customSounds.forEach(c => add('custom:' + c.id, '🎵 ' + c.name));
   sel.value = [...sel.options].some(o => o.value === value) ? value : 'chime';
+}
+function populateHives(sel, value){
+  sel.innerHTML = '';
+  state.hives.forEach(h => { const o = document.createElement('option'); o.value = h.id; o.textContent = h.name; sel.appendChild(o); });
+  sel.value = state.hives.some(h => h.id === value) ? value : state.hives[0].id;
 }
 
 /* ---------- Sounds: built in (made by the browser) and your own (stored on this phone) ---------- */
@@ -317,12 +390,11 @@ async function preload(v){
     return bufs[id];
   } catch(e) { return null; }
 }
-
 function playSound(v, level){
   const c = audio(), t0 = c.currentTime + 0.02;
   if(v && v.startsWith('custom:')){
     const buf = bufs[v.slice(7)];
-    if(!buf) return playSound('chime', level);   // not loaded yet: use the chime instead
+    if(!buf) return playSound('chime', level);
     const g = c.createGain();
     g.gain.value = level / 100;
     g.connect(c.destination);
@@ -352,7 +424,6 @@ function playSound(v, level){
   };
   return (sounds[v] || sounds.chime)();
 }
-
 let alarmTimer = null, alarmEnd = null;
 async function startAlarm(v, level){
   stopAlarm();
@@ -371,10 +442,72 @@ function buzz(){
   return true;
 }
 
+/* ---------- Silent fireworks (visual only, no sound) ---------- */
+let fwInt = null, fwEnd = null, fwRaf = null, fwParts = [];
+function startFireworks(secs){
+  stopFireworks();
+  const c = $('#fw');
+  c.hidden = false;
+  const dpr = window.devicePixelRatio || 1;
+  c.width = innerWidth * dpr;
+  c.height = innerHeight * dpr;
+  const g = c.getContext('2d');
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const cols = ['#FF4FA3','#FFC93C','#9B6BFF','#4DEBC0','#FFF6E9'];
+  const burst = () => {
+    const x = innerWidth * (0.15 + Math.random() * 0.7);
+    const y = innerHeight * (0.1 + Math.random() * 0.5);
+    const col = cols[Math.random() * cols.length | 0];
+    for(let i = 0; i < 44; i++){
+      const a = Math.random() * Math.PI * 2, s = 1.5 + Math.random() * 4;
+      fwParts.push({x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 70 + Math.random() * 30, col});
+    }
+  };
+  const frame = () => {
+    g.clearRect(0, 0, innerWidth, innerHeight);
+    fwParts.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.vx *= 0.99; p.life--;
+      g.globalAlpha = Math.max(0, Math.min(1, p.life / 60));
+      g.fillStyle = p.col;
+      g.beginPath(); g.arc(p.x, p.y, 2.4, 0, Math.PI * 2); g.fill();
+    });
+    g.globalAlpha = 1;
+    fwParts = fwParts.filter(p => p.life > 0);
+    fwRaf = requestAnimationFrame(frame);
+  };
+  burst();
+  fwInt = setInterval(burst, 550);
+  fwRaf = requestAnimationFrame(frame);
+  fwEnd = setTimeout(stopFireworks, secs * 1000);
+}
+function stopFireworks(){
+  clearInterval(fwInt); clearTimeout(fwEnd); cancelAnimationFrame(fwRaf);
+  fwInt = fwEnd = fwRaf = null;
+  fwParts = [];
+  const c = $('#fw');
+  c.getContext('2d').clearRect(0, 0, c.width, c.height);
+  c.hidden = true;
+}
+
+/* ---------- Little celebration when something is done ---------- */
+function celebrate(){
+  const icons = ['🐝','✨','⭐','🎉','💛'];
+  for(let i = 0; i < 14; i++){
+    const s = document.createElement('span');
+    s.className = 'confetti';
+    s.textContent = icons[i % icons.length];
+    s.style.setProperty('--dx', (Math.random() * 260 - 130) + 'px');
+    s.style.setProperty('--dy', (-60 - Math.random() * 220) + 'px');
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1200);
+  }
+}
+
 /* ---------- Pop-up ---------- */
 let popTimer = null;
 function closePop(){
   stopAlarm();
+  stopFireworks();
   clearTimeout(popTimer);
   $('#popup').hidden = true;
 }
@@ -402,9 +535,10 @@ function snooze(r, mins){
 }
 function showReminderPopup(r, test){
   popup('⏰ ' + r.text, `${r.time} · ${ALERT_NAMES[r.alert]}`, !test, [
+    {label: '✔ Done', fn: () => { r.doneOn = todayStr(); save(); closePop(); celebrate(); render(); }},
     {label: '💤 5 min', fn: () => snooze(r, 5)},
     {label: '💤 10 min', fn: () => snooze(r, 10)},
-    {label: '✔ Keep for next time', fn: closePop},
+    {label: '↪ Keep for next time', fn: closePop},
     {label: '✏️ Edit', fn: () => { closePop(); openForm(r); }},
     {label: '🗑️ Delete', fn: () => {
       if(!confirm('Delete this reminder?')) return;
@@ -416,17 +550,21 @@ function showReminderPopup(r, test){
 }
 
 async function fire(r, test = false){
-  await preload(r.sound);
-  if(r.alert === 'alarm'){
-    if(test) playSound(r.sound, r.volume); else startAlarm(r.sound, r.volume);
-  } else if(r.alert === 'vibrate'){
-    buzz();
-    playSound(r.sound, r.volume);
+  if(r.alert === 'fireworks'){
+    startFireworks(test ? 4 : 30);
+  } else {
+    await preload(r.sound);
+    if(r.alert === 'alarm'){
+      if(test) playSound(r.sound, r.volume); else startAlarm(r.sound, r.volume);
+    } else if(r.alert === 'vibrate'){
+      buzz();
+      playSound(r.sound, r.volume);
+    }
   }
   showReminderPopup(r, test);
 }
 
-/* ---------- Checks reminders while the app is open ---------- */
+/* ---------- Checks snoozes and reminders while the app is open ---------- */
 const fired = new Set();
 function checkSnoozes(){
   const nowMs = Date.now();
@@ -436,7 +574,7 @@ function checkSnoozes(){
   save();
   due.forEach(s => {
     const r = state.reminders.find(x => x.id === s.rid);
-    if(r) fire(r);
+    if(r && !isDone(r)) fire(r);
   });
 }
 function tick(){
@@ -449,33 +587,46 @@ function tick(){
     const due = r.repeat === 'daily'
       || (r.repeat === 'days' && r.days.includes(wd))
       || (r.repeat === 'once' && r.date === today);
-    if(!due) return;
+    if(!due || isDone(r)) return;
     const key = r.id + today + hm;
     if(fired.has(key)) return;
     fired.add(key);
     fire(r);
   });
+  updateNext();
 }
 
-/* ---------- Your own sound files ---------- */
-let uploadFor = 'form';
-function pickSound(target){ uploadFor = target; $('#sfile').click(); }
-$('#sfile').onchange = async e => {
-  const f = e.target.files[0];
-  e.target.value = '';
-  if(!f) return;
-  if(f.size > 8 * 1024 * 1024) return popup('Sound too big', 'Please pick a sound under 8 MB.');
-  const id = uid();
-  const name = f.name.replace(/\.[^.]+$/, '').slice(0, 20) || 'My sound';
-  try { await dbPut(id, f); }
-  catch(err) { return popup('Could not save', 'Your phone would not store that sound.'); }
-  state.customSounds.push({id, name});
-  save();
-  await preload('custom:' + id);
-  const v = 'custom:' + id;
-  if(uploadFor === 'hive') populateSound($('#h-sound'), v);
-  else populateSound($('#f-sound'), v);
-};
+/* ---------- Next-up ring: full when 2 hours or more away, empty when it is time ---------- */
+function updateNext(){
+  const box = $('#next');
+  if(state.active === 'brain'){ box.hidden = true; return; }
+  const now = new Date();
+  const nowMin = now.getHours() * 60 + now.getMinutes();
+  const today = ymd(now), wd = now.getDay();
+  let best = null;
+  state.reminders.forEach(r => {
+    if(isDone(r)) return;
+    const due = r.repeat === 'daily'
+      || (r.repeat === 'days' && r.days.includes(wd))
+      || (r.repeat === 'once' && r.date === today);
+    if(!due) return;
+    const [h, m] = r.time.split(':').map(Number);
+    const t = h * 60 + m;
+    if(t < nowMin) return;
+    if(!best || t < best.t) best = {r, t};
+  });
+  if(!best){ box.hidden = true; return; }
+  box.hidden = false;
+  const mins = best.t - nowMin;
+  const frac = Math.min(mins, 120) / 120;
+  const C = 2 * Math.PI * 28;
+  const fg = $('#ring-fg');
+  fg.style.strokeDasharray = C;
+  fg.style.strokeDashoffset = C * (1 - frac);
+  $('#next-t').textContent = best.r.text;
+  const when = mins < 1 ? 'Now' : (mins >= 60 ? `in ${Math.floor(mins / 60)} h ${mins % 60} min` : `in ${mins} min`);
+  $('#next-m').textContent = `${when} · ${best.r.time}`;
+}
 
 /* ---------- Hives ---------- */
 let hiveEditing = null;
@@ -507,6 +658,22 @@ function renderHives(){
     openHive(h);
   };
   wrap.appendChild(add);
+  const starter = document.createElement('button');
+  starter.className = 'hive add';
+  starter.textContent = '🧩 Starter hives';
+  starter.onclick = addStarters;
+  wrap.appendChild(starter);
+}
+function addStarters(){
+  let n = 0;
+  STARTERS.forEach(nm => {
+    if(state.hives.some(h => h.name.toLowerCase() === nm.toLowerCase())) return;
+    state.hives.push({id: uid(), name: nm, c: state.hives.length % 4, alert: 'alarm', sound: 'chime', volume: 70});
+    n++;
+  });
+  save();
+  popup(n ? '🧩 Starter hives added' : 'Already there', n ? `${n} new hive${n > 1 ? 's' : ''} ready to rename.` : 'All the starter hives are already in your list.');
+  render();
 }
 
 function openHive(h){
@@ -548,6 +715,26 @@ $('#h-del').onclick = () => {
 };
 $('#hive-set').onclick = () => openHive(curHive());
 
+/* ---------- Your own sound files ---------- */
+let uploadFor = 'form';
+function pickSound(target){ uploadFor = target; $('#sfile').click(); }
+$('#sfile').onchange = async e => {
+  const f = e.target.files[0];
+  e.target.value = '';
+  if(!f) return;
+  if(f.size > 8 * 1024 * 1024) return popup('Sound too big', 'Please pick a sound under 8 MB.');
+  const id = uid();
+  const name = f.name.replace(/\.[^.]+$/, '').slice(0, 20) || 'My sound';
+  try { await dbPut(id, f); }
+  catch(err) { return popup('Could not save', 'Your phone would not store that sound.'); }
+  state.customSounds.push({id, name});
+  save();
+  await preload('custom:' + id);
+  const v = 'custom:' + id;
+  if(uploadFor === 'hive') populateSound($('#h-sound'), v);
+  else populateSound($('#f-sound'), v);
+};
+
 /* ---------- Reminder list ---------- */
 function repeatText(r){
   if(r.repeat === 'daily') return 'Every day';
@@ -558,26 +745,31 @@ function repeatText(r){
 }
 function renderList(){
   const h = curHive();
-  $('#hive-title').textContent = h.name;
   const list = $('#list');
   list.innerHTML = '';
   const items = state.reminders.filter(r => r.hive === h.id).sort((a,b) => a.time.localeCompare(b.time));
   if(!items.length){
-    list.innerHTML = '<p class="empty">No reminders yet. Tap ✨ Add reminder, or tap the mic and speak one.</p>';
+    list.innerHTML = '<p class="empty">No reminders yet. Tap ✨ Add reminder, or tap the big 🎤 at the top and speak one.</p>';
     return;
   }
   items.forEach(r => {
     const el = document.createElement('div');
-    el.className = 'rem';
-    el.innerHTML = `<div><div class="rem-text"></div><div class="rem-meta"></div></div>
+    el.className = 'rem' + (isDone(r) ? ' is-done' : '');
+    el.innerHTML = `<div style="min-width:0;flex:1 1 180px"><div class="rem-text"></div><div class="rem-meta"></div></div>
       <div class="rem-btns">
+        <button data-a="done" title="Done">✔</button>
         <button data-a="test" title="Test">▶</button>
         <button data-a="edit" title="Edit">✏️</button>
         <button data-a="del" title="Delete">🗑️</button>
       </div>`;
     el.querySelector('.rem-text').textContent = r.text;
-    const sound = r.alert === 'silent' ? '' : ` · ${soundLabel(r.sound)} ${r.volume}%`;
+    const sound = r.alert === 'silent' || r.alert === 'fireworks' ? '' : ` · ${soundLabel(r.sound)} ${r.volume}%`;
     el.querySelector('.rem-meta').textContent = `${r.time} · ${repeatText(r)} · ${ALERT_NAMES[r.alert]}${sound}`;
+    el.querySelector('[data-a=done]').onclick = () => {
+      r.doneOn = isDone(r) ? null : todayStr();
+      if(r.doneOn) celebrate();
+      save(); render();
+    };
     el.querySelector('[data-a=test]').onclick = () => fire(r, true);
     el.querySelector('[data-a=edit]').onclick = () => openForm(r);
     el.querySelector('[data-a=del]').onclick = () => {
@@ -591,20 +783,23 @@ function renderList(){
 
 /* ---------- Add / edit reminder form ---------- */
 let editing = null;
+let pendingEntry = null;
 function setVol(v){ $('#f-vol').value = v; $('#vol-out').textContent = v + '%'; }
 function syncRepeat(){
   const v = $('#f-repeat').value;
   $('#wrap-days').hidden = v !== 'days';
   $('#wrap-date').hidden = v !== 'once';
 }
-function openForm(r = null, prefill = ''){
+function openForm(r = null, prefill = '', entryId = null){
   editing = r;
+  pendingEntry = entryId;
   const H = curHive();
   $('#dlg-title').textContent = r ? 'Edit reminder' : 'New reminder';
   $('#f-text').value = r ? r.text : prefill;
+  populateHives($('#f-hive'), r ? r.hive : H.id);
   $('#f-time').value = r ? r.time : '09:00';
   $('#f-repeat').value = r ? r.repeat : 'once';
-  $('#f-date').value = (r && r.date) || ymd(new Date());
+  $('#f-date').value = (r && r.date) || todayStr();
   document.querySelectorAll('#f-days input').forEach(i => i.checked = !!(r && r.days && r.days.includes(+i.value)));
   document.querySelector(`input[name=alert][value=${r ? r.alert : H.alert}]`).checked = true;
   populateSound($('#f-sound'), r ? r.sound : H.sound);
@@ -617,7 +812,7 @@ $('#f-days').innerHTML = DAY_ORDER.map(d =>
 $('#f-repeat').onchange = syncRepeat;
 $('#f-vol').oninput = e => setVol(e.target.value);
 $('#add').onclick = () => openForm();
-$('#f-cancel').onclick = () => $('#dlg').close();
+$('#f-cancel').onclick = () => { pendingEntry = null; $('#dlg').close(); };
 $('#f-preview').onclick = async () => { await preload($('#f-sound').value); playSound($('#f-sound').value, +$('#f-vol').value); };
 $('#f-upload').onclick = () => pickSound('form');
 $('#f-buzz').onclick = () => { if(!buzz()) popup('No vibrate here', 'This phone or browser cannot vibrate (iPhone Safari cannot). The sound still works.'); };
@@ -631,6 +826,7 @@ $('#f-form').onsubmit = e => {
   if(repeat === 'days' && !days.length) return popup('Pick a day', 'Tap at least one day for this reminder.');
   const data = {
     text,
+    hive: $('#f-hive').value,
     time: $('#f-time').value,
     repeat,
     days: repeat === 'days' ? days : [],
@@ -640,11 +836,104 @@ $('#f-form').onsubmit = e => {
     volume: +$('#f-vol').value
   };
   if(editing) Object.assign(editing, data);
-  else state.reminders.push({id: uid(), hive: curHive().id, ...data});
+  else {
+    const nr = {id: uid(), ...data};
+    state.reminders.push(nr);
+    if(pendingEntry){
+      const en = state.brain.find(x => x.id === pendingEntry);
+      if(en){ en.cat = 'Reminder'; en.rid = nr.id; }
+      pendingEntry = null;
+    }
+  }
   save();
   $('#dlg').close();
+  state.active = data.hive;
+  save();
   render();
 };
+
+/* ---------- Brain Dump scrapbook ---------- */
+let brainCat = 'All';
+function guessCat(t){
+  if(/\b(bill|bills|invoice|rent|rego|electric|electricity|pay|due)\b|\$\s?\d/i.test(t)) return 'Bill';
+  if(/\b(buy|milk|bread|eggs|shopping|groceries|supermarket|shops)\b/i.test(t)) return 'Shopping';
+  if(/\b(call|ring|text|email|message|phone)\b/i.test(t)) return 'Call';
+  if(/\b(appointment|dentist|doctor|vet|meeting|tomorrow|tonight|today|monday|tuesday|wednesday|thursday|friday|saturday|sunday|o'?clock)\b|\b\d{1,2}(:\d{2})?\s?(am|pm)\b/i.test(t)) return 'Reminder';
+  return 'Idea';
+}
+function splitItems(t){
+  return t.split(/\n|,|;|\band\b|\bthen\b/i).map(s => s.trim()).filter(s => s.length > 1);
+}
+function renderBrainDialog(){
+  const cats = $('#bd-cats');
+  cats.innerHTML = '';
+  ['All', ...CATS].forEach(c => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip-btn' + (c === brainCat ? ' on' : '');
+    b.textContent = (CAT_ICON[c] ? CAT_ICON[c] + ' ' : '') + c;
+    b.onclick = () => { brainCat = c; renderBrainDialog(); };
+    cats.appendChild(b);
+  });
+  renderBrainItems();
+}
+function renderBrainItems(){
+  const words = ($('#bd-q').value || '').toLowerCase().split(/\s+/).filter(Boolean);
+  const items = state.brain
+    .filter(e => (brainCat === 'All' || e.cat === brainCat) && words.every(w => (e.text + ' ' + e.cat).toLowerCase().includes(w)))
+    .sort((a, b) => b.created - a.created);
+  const box = $('#bd-items');
+  box.innerHTML = '';
+  if(!items.length){
+    const p = document.createElement('p');
+    p.className = 'empty';
+    p.textContent = state.brain.length ? 'Nothing matches. Try fewer words.' : 'Nothing here yet. Talk or type above. It waits here until you decide what it is.';
+    box.appendChild(p);
+    return;
+  }
+  items.forEach(e => {
+    const el = document.createElement('div');
+    el.className = 'rem';
+    el.innerHTML = `<div style="min-width:0;flex:1 1 180px"><div class="rem-text"></div><div class="rem-meta"></div></div>
+      <div class="rem-btns"><select class="cat-sel" aria-label="Category"></select><button data-a="rem" title="Make a reminder">⏰</button><button data-a="del" title="Delete">🗑️</button></div>`;
+    el.querySelector('.rem-text').textContent = e.text;
+    el.querySelector('.rem-meta').textContent = new Date(e.created).toLocaleString('en-AU', {day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'}) + (e.rid ? ' · made into a reminder' : '');
+    const sel = el.querySelector('.cat-sel');
+    CATS.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = CAT_ICON[c] + ' ' + c; if(c === e.cat) o.selected = true; sel.appendChild(o); });
+    sel.onchange = () => { e.cat = sel.value; save(); renderBrainItems(); };
+    el.querySelector('[data-a=rem]').onclick = () => { $('#bdlg').close(); openForm(null, e.text, e.id); };
+    el.querySelector('[data-a=del]').onclick = () => {
+      if(!confirm('Delete this scrap?')) return;
+      state.brain = state.brain.filter(x => x.id !== e.id);
+      save(); renderBrainItems();
+    };
+    box.appendChild(el);
+  });
+}
+$('#bd-open').onclick = () => {
+  brainCat = 'All';
+  $('#bd-q').value = '';
+  $('#bd-status').textContent = '';
+  renderBrainDialog();
+  $('#bdlg').showModal();
+};
+$('#bd-close').onclick = () => $('#bdlg').close();
+$('#bd-q').oninput = renderBrainItems;
+$('#bd-save').onclick = () => {
+  const raw = $('#bd-text').value.trim();
+  if(!raw) return;
+  const parts = $('#bd-split').checked ? splitItems(raw) : [raw];
+  const now = Date.now();
+  parts.forEach((p, i) => state.brain.push({id: uid(), text: p, cat: guessCat(p), created: now + i}));
+  save();
+  $('#bd-text').value = '';
+  $('#bd-status').textContent = `Saved ${parts.length} ${parts.length > 1 ? 'items' : 'item'} to your scrapbook ✓`;
+  renderBrainItems();
+};
+$('#bd-mic').onclick = e => listen(e.currentTarget, t => {
+  const ta = $('#bd-text');
+  ta.value = (ta.value ? ta.value + ' ' : '') + t;
+});
 
 /* ---------- Voice (Chrome and Safari) ---------- */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -660,15 +949,28 @@ function listen(btn, onText){
   rec.onerror = () => btn.classList.remove('listening');
   rec.start();
 }
-if(!SR){ $('#big-mic').disabled = true; $('#mic-f').disabled = true; $('#mic-h').disabled = true; }
+if(!SR){ $('#big-mic').disabled = true; $('#mic-f').disabled = true; $('#mic-h').disabled = true; $('#bd-mic').disabled = true; }
 $('#big-mic').onclick = e => listen(e.currentTarget, t => openForm(null, t));
 $('#mic-f').onclick = e => listen(e.currentTarget, t => { $('#f-text').value = t; });
 
 /* ---------- Render ---------- */
+function renderPanel(){
+  const brain = state.active === 'brain';
+  $('#add').hidden = brain;
+  $('#hive-set').hidden = brain;
+  if(brain){
+    $('#hive-title').textContent = '🧠 Brain Dump';
+    $('#list').innerHTML = '<p class="empty">Your Brain Dump lives at the bottom. Tap 🧠 Brain Dump · Talk to me.</p>';
+  } else {
+    $('#hive-title').textContent = curHive().name;
+    renderList();
+  }
+}
 function render(){
-  if(!state.hives.find(h => h.id === state.active)) state.active = state.hives[0].id;
+  if(state.active !== 'brain' && !state.hives.find(h => h.id === state.active)) state.active = state.hives[0].id;
   renderHives();
-  renderList();
+  renderPanel();
+  updateNext();
 }
 render();
 setInterval(tick, 15000);
