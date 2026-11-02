@@ -1,0 +1,132 @@
+BUSYBEE - HOW TO TRY IT
+Test version 2 (2 November 2026)
+
+
+OPEN IT
+Option 1: Scan QR code 1 with your phone camera. Tap the link.
+
+Option 2: Tap this link:
+https://blaisepartridge-stack.github.io/meter-reader-forms/busybee/
+
+
+READ THIS FIRST
+- Reminders only ring while BusyBee is open on your screen.
+  Keep the phone unlocked and the screen on at reminder time.
+- Turn the sound up.
+- iPhone: if you hear nothing, check the switch on the side of
+  the phone is not on silent.
+- Vibrate does not work on iPhone. Sound still works.
+
+
+INSTALL ON AN APPLE iPHONE OR iPAD
+1. Open the link in SAFARI. (Safari is best for the microphone.)
+2. Tap the Share button (the square with an arrow pointing up).
+3. Scroll down and tap "Add to Home Screen".
+4. Tap "Add". BusyBee now has its own icon on your home screen.
+5. The first time you tap the microphone, tap "Allow".
+
+
+INSTALL ON AN ANDROID PHONE
+1. Open the link in CHROME.
+2. Tap the three dots (top right corner).
+3. Tap "Install app" or "Add to Home screen".
+4. Tap "Install" or "Add".
+5. The first time you tap the microphone, tap "Allow".
+
+
+THE BIG BUTTON AT THE BOTTOM: BRAIN DUMP
+Tap "🧠 Brain Dump · Talk to me" at the bottom of the screen.
+This is your scrapbook for ideas. Use it for anything, half-finished
+is fine.
+- Talk: tap the 🎤 and speak. Your words appear in the box.
+- Type: just type in the box.
+- Save: tap "💾 Save". BusyBee splits your words into separate
+  items at commas and the word "and". Turn off "Split into separate
+  items" to keep everything as one item.
+- Search: type a word in the search box, like "milk" or "Jack".
+  Only matching items show.
+- Categories: the buttons show Idea, Shopping, Bill, Call or
+  Reminder. BusyBee guesses the category from your words. You can
+  change it with the drop-down on each item.
+- Make a reminder: tap ⏰ on an item. The reminder form opens with
+  your words filled in. Pick a hive, a time and an alert, then Save.
+- Delete: tap 🗑️.
+
+
+HIVES
+- Make a hive: tap "+ New hive". Type a name, or tap 🎤 and say it.
+  Tap Save.
+- Starter hives: tap "🧩 Starter hives" to add School pick-up,
+  Animal tablets, Canteen roster, Bins and Rent. Rename any of them.
+- Change a hive: tap the gear (⚙️) on it, or "⚙️ Hive settings".
+  You can change the name, alert, sound and volume. "Delete hive"
+  removes it and its reminders.
+
+
+REMINDERS
+- Add one: tap "✨ Add reminder", or tap the big 🎤 at the top and
+  say it. Pick a hive, a time, how it repeats and an alert.
+- Alerts:
+    🔔 Alarm = rings with a sound until you tap a button
+    🔕 Silent = pop-up only
+    📳 Vibrate = buzzes and plays your sound once
+    ✨ Fireworks = colours across the screen, no sound
+- Buttons on each reminder:
+    ✔ = done (it turns grey and crossed out, and a little bee
+        celebrates)
+    ▶ = test it now
+    ✏️ = change it
+    🗑️ = delete it
+- "Next up" box: shows your next reminder with a ring. The ring is
+  full when there are 2 hours or more to go, and empty when it is
+  time.
+
+
+WHEN A REMINDER GOES OFF
+- ✔ Done = finished
+- 💤 5 min or 💤 10 min = remind me again later
+- ↪ Keep for next time = close it, keep it for its next time
+- ✏️ Edit = fix a mistake (for example, from voice)
+- 🗑️ Delete = remove it
+- Alarms stop by themselves after 2 minutes.
+- The pop-up stays on screen until you tap a button.
+
+
+YOUR OWN SOUNDS
+- In Hive settings, or in a reminder, tap "🎵 Add my own sound".
+- Pick a sound or music file from your phone (under 8 MB).
+- It is saved on this phone only.
+
+
+NOT IN THIS VERSION YET
+- Reminders that ring with the phone locked
+- Smartwatch reminders
+- Siri or Google Assistant commands
+- Sharing hives with other people
+- AI features: "Where's my...?" search and "I'm stuck" steps
+  (these cost money, so they wait for approval)
+- Notes, Prompts, Memories and other sections
+- Repeats other than every day or chosen days
+- Fireworks and alarms only work while the page is open
+
+
+TEST CHECKLIST
+[ ] I opened BusyBee from the link (or QR code 1)
+[ ] I added it to my home screen
+[ ] I tapped Starter hives and renamed one
+[ ] I changed a hive's sound and volume
+[ ] I added an Alarm reminder for 2 minutes from now, with the
+    screen on. Did it ring?
+[ ] I tried Silent, Vibrate and Fireworks
+[ ] I tapped ✔ Done on a reminder. Did the bee celebrate?
+[ ] I snoozed a reminder for 5 minutes
+[ ] I edited a reminder and deleted one
+[ ] I talked into Brain Dump, saved it, and searched for a word
+[ ] I made a reminder from a Brain Dump item
+[ ] I added my own sound and used it
+
+
+PLEASE SEND BACK
+- What worked
+- What did not work, or what was confusing
+- Your phone: iPhone or Android, and the model
