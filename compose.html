@@ -26,9 +26,8 @@
 <header><b>Meter Reading Management</b><br><span style="font-size:12px;color:#bcd3ea">Open the onboarding email in Outlook</span></header>
 <main>
   <p>Tap the button. A <b>new email opens in Outlook</b> with the address, subject and text filled in. Nothing is sent until you check it and press Send.</p>
-  <a class="btn" id="outlook" href="#">Open new email in Outlook</a>
-  <a class="btn ghost" id="mail" href="#">Use my phone's mail app instead</a>
-  <p class="note">If Outlook asks “Open in Outlook?”, tap Open. If neither button works, copy the parts below into a new email.</p>
+  <a class="btn" id="mail" href="#">Open new email in Outlook</a>
+  <p class="note">The first time, your phone may ask which app to use. Choose Outlook and “Always”. If it doesn't open, copy the parts below into a new email.</p>
   <div class="box">
     <div class="lbl">To</div><div class="row" id="to"></div>
     <button class="btn ghost" data-copy="to">Copy address</button>
@@ -48,7 +47,6 @@
   ["to","subject","body"].forEach(function(k){document.getElementById(k).textContent=v[k]||"(none)"});
   var enc=function(s){return encodeURIComponent(s)};
   var qs="subject="+enc(v.subject)+"&body="+enc(v.body).replace(/%0A/g,"%0D%0A");
-  document.getElementById("outlook").href="ms-outlook://compose?to="+enc(v.to)+"&"+qs;
   document.getElementById("mail").href="mailto:"+enc(v.to).replace(/%40/g,"@")+"?"+qs;
   document.querySelectorAll("[data-copy]").forEach(function(b){
     b.addEventListener("click",function(){
