@@ -1295,7 +1295,7 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
   }
   function bi(s){return s.replace(/[A-Za-z]/g,function(c){var u=c<="Z";return String.fromCodePoint((u?0x1D63C:0x1D656)+c.charCodeAt(0)-(u?65:97));});}
   function toNote(to){
-    return to+"\n\n"+bi("DOUBLE-TAP THE EMAIL ADDRESS ABOVE TO SELECT IT, TAP COPY, THEN PASTE IT INTO THE TO FIELD")+"\n\n";
+    return to+"\n\n"+bi("PRESS AND HOLD THE EMAIL ADDRESS ABOVE, TAP COPY, PASTE IT INTO THE TO FIELD, THEN TAP RETURN SO IT TURNS INTO A NAME BUBBLE")+"\n\n";
   }
   function makeRef(){return "HG-"+(Date.now().toString(36)+Math.random().toString(36).slice(2,6)).toUpperCase().slice(-8);}
   function summaryText(ref){
@@ -1334,7 +1334,7 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
     if(share){
       /* Safari only allows the share sheet when it is the first thing a tap does, so nothing else (such as copying) runs before it */
       var p;try{p=navigator.share({files:[file],title:subject,text:body});}catch(e){p=Promise.reject(e);}
-      setNote("Choose <b>Mail</b>, <b>Outlook</b> or <b>Gmail</b>. The form is already attached. Put <b>"+esc(to)+"</b> in the To box, then press <b>Send</b>.");
+      setNote("Choose <b>Mail</b>, <b>Outlook</b> or <b>Gmail</b>. The form is already attached. Put <b>"+esc(to)+"</b> in the To box and tap <b>Return</b> so it turns into a name bubble, then press <b>Send</b>.");
       p.then(function(){
         setNote("If you pressed Send in your email app, you are finished. If the email did not go, tap <b>Email the form to the coordinator</b> again.");
       },function(err){

@@ -807,7 +807,7 @@ Please open the form from its web link instead: <a href="https://blaisepartridge
     });
   }
   function toNote(to) {
-    return to + "\n\n" + bi("DOUBLE-TAP THE EMAIL ADDRESS ABOVE TO SELECT IT, TAP COPY, THEN PASTE IT INTO THE TO FIELD") + "\n\n";
+    return to + "\n\n" + bi("PRESS AND HOLD THE EMAIL ADDRESS ABOVE, TAP COPY, PASTE IT INTO THE TO FIELD, THEN TAP RETURN SO IT TURNS INTO A NAME BUBBLE") + "\n\n";
   }
   function canShareFile(file) {
     try { return !!(navigator.share && navigator.canShare && navigator.canShare({ files: [file] })); } catch (e) { return false; }
@@ -865,7 +865,7 @@ Please open the form from its web link instead: <a href="https://blaisepartridge
       var sp;
       try { sp = navigator.share({ files: [file], title: m.subject, text: toNote(COORD_EMAIL) + m.body }); } catch (e) { sp = Promise.reject(e); }
       setNote("Choose <b>Mail</b>, <b>Outlook</b> or <b>Gmail</b>. <b>The signed declaration is attached.</b> Put <b>" + esc(COORD_EMAIL) +
-        "</b> in the To box, then press <b>Send</b>.");
+        "</b> in the To box and tap <b>Return</b> so it turns into a name bubble, then press <b>Send</b>.");
       sp.then(function () {
         setNote("If you pressed Send in your email app, you are finished. If the email did not go, tap <b>Email the signed declaration to the coordinator</b> again.");
       }, function (err) {
