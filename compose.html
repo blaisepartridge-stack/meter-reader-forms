@@ -41,7 +41,9 @@
 </main>
 <script>
 (function(){
-  var q=new URLSearchParams(location.search);
+  /* Details arrive after # so they stay on the phone and are never sent to the web server. Nothing is stored. */
+  var q=new URLSearchParams(location.hash.slice(1)||location.search);
+  if(location.hash)history.replaceState(null,"",location.pathname);
   var v={to:q.get("to")||"",subject:q.get("subject")||"",body:q.get("body")||""};
   ["to","subject","body"].forEach(function(k){document.getElementById(k).textContent=v[k]||"(none)"});
   var enc=function(s){return encodeURIComponent(s)};
