@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Open email in Outlook</title>
+<style>
+  :root{--navy:#0b3a6b;--blue:#0a6ebd;--aqua:#00a3b4;--ink:#10253b;--muted:#5d7288;--line:#cfdbe8;--paper:#f3f7fb}
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink)}
+  header{background:var(--navy);color:#fff;padding:14px 16px;border-bottom:4px solid var(--aqua)}
+  header b{font-size:17px}
+  main{padding:16px;max-width:640px;margin:0 auto}
+  .btn{display:block;width:100%;text-align:center;font-weight:700;font-size:17px;padding:14px;border-radius:8px;border:2px solid var(--blue);background:var(--blue);color:#fff;text-decoration:none;margin:10px 0;cursor:pointer;font-family:inherit}
+  .btn.ghost{background:#fff;color:var(--blue)}
+  .note{font-size:14px;color:var(--muted)}
+  .box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:10px}
+  .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.5 inherit;margin:4px 0 0}
+  .row{overflow-wrap:anywhere;margin:2px 0 8px}
+  #msg{font-weight:700;color:#0f5e32;min-height:1.4em}
+</style>
+</head>
+<body>
+<header><b>Meter Reading Management</b><br><span style="font-size:12px;color:#bcd3ea">Open the onboarding email in Outlook</span></header>
+<main>
+  <p>Tap the button. A <b>new email opens in Outlook</b> with the address, subject and text filled in. Nothing is sent until you check it and press Send.</p>
+  <a class="btn" id="outlook" href="#">Open new email in Outlook</a>
+  <a class="btn ghost" id="mail" href="#">Use my phone's mail app instead</a>
+  <p class="note">If Outlook asks “Open in Outlook?”, tap Open. If neither button works, copy the parts below into a new email.</p>
+  <div class="box">
+    <div class="lbl">To</div><div class="row" id="to"></div>
+    <button class="btn ghost" data-copy="to">Copy address</button>
+    <div class="lbl">Subject</div><div class="row" id="subject"></div>
+    <button class="btn ghost" data-copy="subject">Copy subject</button>
+    <div class="lbl">Email</div><pre id="body"></pre>
+    <button class="btn ghost" data-copy="body">Copy email text</button>
+    <div id="msg" role="status"></div>
+  </div>
+</main>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  var v={to:q.get("to")||"",subject:q.get("subject")||"",body:q.get("body")||""};
+  ["to","subject","body"].forEach(function(k){document.getElementById(k).textContent=v[k]||"(none)"});
+  var enc=function(s){return encodeURIComponent(s)};
+  var qs="subject="+enc(v.subject)+"&body="+enc(v.body).replace(/%0A/g,"%0D%0A");
+  document.getElementById("outlook").href="ms-outlook://compose?to="+enc(v.to)+"&"+qs;
+  document.getElementById("mail").href="mailto:"+enc(v.to).replace(/%40/g,"@")+"?"+qs;
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var t=v[b.getAttribute("data-copy")],m=document.getElementById("msg");
+      var done=function(){m.textContent="Copied."};
+      var fb=function(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");done()}catch(e){m.textContent="Copy was blocked. Press and hold the text to copy it."}a.remove()};
+      try{navigator.clipboard.writeText(t).then(done,fb)}catch(e){fb()}
+    });
+  });
+})();
+</script>
+</body>
+</html>
