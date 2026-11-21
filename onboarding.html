@@ -444,7 +444,7 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
           <div class="grid"><div class="full"><label class="lbl" for="name">Full legal name</label><input type="text" id="name" data-f="name" autocomplete="name"></div></div>
           <p style="margin:14px 0 0">I, <b class="inl" data-mirror="name" data-ph="(your full name)"></b>, will read this document carefully. After each section I will add my initials to confirm that I have understood it, and I will sign at the end of the forms. I understand that my electronic signature and initials have the same effect as my handwritten signature and initials.</p>
           <div class="adoptrow no-print" data-row="adopt"><button type="button" class="btn primary" id="btnAdoptTop">Adopt my signature and initials</button><div id="adoptTopState" class="adoptprev"></div></div>
-          <p class="hint" style="margin-top:8px" id="adoptHint">Choose to draw or type your signature and initials. You only do this once.</p>
+          <p class="hint" style="margin-top:8px" id="adoptHint">Tap the button, then just pick a signature style (recommended). You only do this once.</p>
         </div>
       </div>
       <p style="margin:16px 0 0">The Water Corporation employs both permanent and casual water meter readers. All casual water meter readers are employed by Programmed Skilled Workforce and contracted to the Water Corporation.</p>
@@ -746,10 +746,10 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
         <div id="iniField"><label class="lbl" for="dIni">Initials</label><input type="text" id="dIni" maxlength="4" autocomplete="off" style="background:#fff;border-color:var(--line)"></div>
       </div>
       <div class="tabs" role="tablist">
-        <button type="button" class="tab" role="tab" id="tabDraw" aria-selected="true">Draw by hand</button>
-        <button type="button" class="tab" role="tab" id="tabType" aria-selected="false">Type my name</button>
+        <button type="button" class="tab" role="tab" id="tabType" aria-selected="true">Adopt signature (recommended)</button>
+        <button type="button" class="tab" role="tab" id="tabDraw" aria-selected="false">Draw by hand</button>
       </div>
-      <div id="drawArea">
+      <div id="drawArea" hidden>
         <p class="hint" style="margin:0 0 8px">Use your finger or mouse to draw your signature and initials in the boxes below.</p>
         <span class="lbl">Draw your signature</span>
         <canvas class="pad" id="cSig" width="600" height="180" aria-label="Signature drawing area"></canvas>
@@ -761,8 +761,8 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
           <button type="button" class="btn" id="clearPads">Clear</button>
         </div>
       </div>
-      <div id="typeArea" hidden>
-        <p class="hint" style="margin:0 0 8px">Select a signature style below. Your signature and initials are then generated from your full name and adopted for you. Nothing needs to be drawn.</p>
+      <div id="typeArea">
+        <p class="hint" style="margin:0 0 8px"><b>Easiest option.</b> Just tap a signature style below. Your signature and initials are made from your full name for you. Please don't type your name again or draw anything.</p>
         <span class="lbl">Choose a signature style</span>
         <div class="styles" role="radiogroup" id="styleList"></div>
       </div>
@@ -936,7 +936,7 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
     $("#empNoWrap").hidden=state.fields.workerType!=="internal";
     $$("textarea").forEach(autosize);
     var ap=$("#adoptTopState"),ab=$("#btnAdoptTop");
-    if(ap){var ad=state.adopted.emp;ap.innerHTML=ad?'<span class="muted" style="font-size:.85rem">Saved:</span><img alt="Your signature" src="'+esc(ad.sig)+'">'+(ad.ini?'<img alt="Your initials" src="'+esc(ad.ini)+'">':""):"";ab.textContent=ad?"Change my signature and initials":"Adopt my signature and initials";ab.disabled=!!state.signed.emp1;var pn=$("#adoptPanel");pn.classList.toggle("ok",!!ad);$("#adoptHint").textContent=ad?"Established. These will be used for every initial box and signature below.":"Choose to draw or type your signature and initials. You only do this once.";}
+    if(ap){var ad=state.adopted.emp;ap.innerHTML=ad?'<span class="muted" style="font-size:.85rem">Saved:</span><img alt="Your signature" src="'+esc(ad.sig)+'">'+(ad.ini?'<img alt="Your initials" src="'+esc(ad.ini)+'">':""):"";ab.textContent=ad?"Change my signature and initials":"Adopt my signature and initials";ab.disabled=!!state.signed.emp1;var pn=$("#adoptPanel");pn.classList.toggle("ok",!!ad);$("#adoptHint").textContent=ad?"Established. These will be used for every initial box and signature below.":"Tap the button, then just pick a signature style (recommended). You only do this once.";}
     $$("[data-ini]").forEach(function(b){
       var img=state.ini[b.dataset.ini];
       b.innerHTML=img?'<img alt="Initials" src="'+esc(img)+'">':"<span>Initial</span>";
@@ -1091,7 +1091,7 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
     var nm=(ad&&ad.name)||state.fields[NAME_FIELD[r]]||"";
     $("#dName").value=nm;$("#dIni").value=(ad&&ad.iniText)||autoIni(nm);
     $("#iniField").hidden=r!=="emp";$("#iniDraw").hidden=r!=="emp";
-    $("#dConsent").checked=false;dErr("");sigPad.clear();iniPad.clear();setTab("draw");
+    $("#dConsent").checked=false;dErr("");sigPad.clear();iniPad.clear();setTab("type");
     $("#adGo").textContent=ctx.mode==="sign"?"Adopt signature and sign":"Adopt signature and initials";
   }
   function showConfirm(){
@@ -1102,7 +1102,7 @@ Supervisors: save this file, open the link above and tap <b>Open a form I receiv
   function openDlg(role,mode,cb){
     ctx={role:ak(role),mode:mode,cb:cb};
     $("#dlgTitle").textContent=mode==="sign"?(state.adopted[ak(role)]?"Sign as "+ROLE_NAME[role]:"Adopt your electronic signature"):"Adopt your electronic signature and initials";
-    $("#dlgSub").textContent=(mode==="sign"&&state.adopted[ak(role)])?"Review your electronic signature below, then select Sign to apply it.":(ak(role)==="emp"?"Select how your initials and signature will appear. Draw them by hand, or select Type my name to have a signature adopted for you from your full name. They will be applied each time you initial or sign throughout these forms.":"Select how your signature will appear. Draw it by hand, or select Type my name to have a signature adopted for you from your full name.");
+    $("#dlgSub").textContent=(mode==="sign"&&state.adopted[ak(role)])?"Review your electronic signature below, then select Sign to apply it.":(ak(role)==="emp"?"Select how your initials and signature will appear. Tap a style under Adopt signature (recommended), and your signature and initials are made from your full name. Only use Draw by hand if you must. They will be applied each time you initial or sign throughout these forms.":"Select how your signature will appear. Tap a style under Adopt signature (recommended), or draw it by hand, to have a signature adopted for you from your full name.");
     if(mode==="sign"&&state.adopted[ak(role)])showConfirm();else showAdopt();
     $("#dlg").hidden=false;
   }
